@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/config/:/etc/nginx/conf.d
+    depends_on:
+      - fpm
+  fpm:
+    build:
+      context: docker/fpm
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "links"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+  redis:
+    image: redis
+    volumes:
+      - redis-data:/data
+
+volumes:
+  mysql-data:
+    driver: local
+  redis-data:
+    driver: local

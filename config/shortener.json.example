@@ -1,0 +1,5 @@
+{
+  "keyspace": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+  "length": 6,
+  "retry": 5
+}
