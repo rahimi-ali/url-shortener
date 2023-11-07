@@ -31,7 +31,7 @@ A URL shortener built as an exercise in extreme wheel reinvention!
 - [x] Dependency Injection Abstractions
 - [x] Configuration manager (with JSON config files)
 - [x] Database Abstraction (Repository pattern with PDO)
-- [x] Validation (with the `rahimi-ali/php-dto` library which I had previously written)
+- [x] Validation (with the [`rahimi-ali/php-dto`](https://github.com/rahimi-ali/php-dto) library which I had previously written)
 
 ### What's not custom (yet)?
 - [ ] Dependency Injection Core (something to replace `php-di`) -> quite hard and a lot of reflection involved
