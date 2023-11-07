@@ -4,9 +4,10 @@ A URL shortener built as an exercise in extreme wheel reinvention!
 
 ## Installation
 1. Bring up the http server, database and cache with `docker compose up -d`
-2. Install Dependencies with `docker compose exec fpm composer install`
-3. Run database migrations with `docker compose exec fpm php migrations/migrate.php`
-4. Use the API (Postman collection and environment are committed to the repo in `api` directory)
+2. Configure (copy and edit `.json.example` files in config directory to `.json` files)
+3. Install Dependencies with `docker compose exec fpm composer install`
+4. Run database migrations with `docker compose exec fpm php migrations/migrate.php`
+5. Use the API (Postman collection and environment are committed to the repo in `api` directory)
 
 ## Endpoints
 - Link Redirection
