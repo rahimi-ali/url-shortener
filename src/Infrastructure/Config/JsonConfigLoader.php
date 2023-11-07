@@ -10,7 +10,7 @@ class JsonConfigLoader
 
         $config = [];
         foreach ($files as $file) {
-            if (preg_match('/(.+)\.json/', $file, $matches)) {
+            if (preg_match('/^(.+)\.json$/', $file, $matches)) {
                 $config[$matches[1]] = json_decode(file_get_contents("$dir/$file"), true);
             }
         }

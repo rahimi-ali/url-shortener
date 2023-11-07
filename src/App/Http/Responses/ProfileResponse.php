@@ -10,11 +10,9 @@ class ProfileResponse extends JsonResponse
     public function __construct(User $user)
     {
         parent::__construct([
-            'user' => [
-                'id' => $user->getId(),
-                'firstname' => $user->getFirstname(),
-                'lastname' => $user->getLastname(),
-            ],
+            'id' => $user->getId(),
+            'firstname' => $user->getFirstname(),
+            'lastname' => $user->getLastname(),
         ]);
     }
 }

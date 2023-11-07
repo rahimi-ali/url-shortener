@@ -1,5 +1,5 @@
 {
-  "keyspace": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+  "characters": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
   "length": 6,
-  "retry": 5
+  "retries": 5
 }

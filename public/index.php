@@ -4,6 +4,7 @@ use App\ServiceProviders\AppServiceProvider;
 use App\ServiceProviders\CachingServiceProvider;
 use App\ServiceProviders\LoggingServiceProvider;
 use App\ServiceProviders\PersistenceServiceProvider;
+use App\ServiceProviders\TranslationsServiceProvider;
 use Infrastructure\Config\Contracts\ConfigManagerInterface;
 use Infrastructure\Config\InMemoryConfigManager;
 use Infrastructure\Config\JsonConfigLoader;
@@ -29,6 +30,7 @@ $serviceContainer->set(ConfigManagerInterface::class, $configManager);
 (new LoggingServiceProvider())->register($serviceContainer);
 (new PersistenceServiceProvider())->register($serviceContainer);
 (new CachingServiceProvider())->register($serviceContainer);
+(new TranslationsServiceProvider())->register($serviceContainer);
 (new AppServiceProvider())->register($serviceContainer);
 
 // Setup router

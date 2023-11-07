@@ -1,0 +1,1034 @@
+{
+	"info": {
+		"_postman_id": "fd4e1c0a-0937-4227-a295-33bd1e019399",
+		"name": "Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21227661"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"jwt\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testtest\",\n    \"password\": \"testtest\",\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"test5\",\n    \"password\": \"test\",\n    \"firstname\": \"Test\",\n    \"lastname\": \"Test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:08:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 9,\n        \"firstname\": \"Test\",\n        \"lastname\": \"Test\"\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2OTkzMTIxMjcsImV4cCI6MTY5OTMxNTcyNywiaWQiOjl9.KW5ftQ2kgCa1nRgUNl3UnLsgdbysAoQaWNy8DZuTXUkDQoe2xDBvEWrxNQmBEYBt6ehZ4G0tnedWuNPHJgrqew\"\n}"
+						},
+						{
+							"name": "Already Exists Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"test5\",\n    \"password\": \"test\",\n    \"firstname\": \"Test\",\n    \"lastname\": \"Test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:09:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Username already taken.\"\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": null,\n    \"password\": \"test\",\n    \"firstname\": \"`whatever\",\n    \"lastname\": \"whatever\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 12:50:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable content.\",\n    \"errors\": {\n        \"username\": [\n            \"This field is required.\"\n        ],\n        \"password\": [\n            \"Should be at least 6 characters long.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:08:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 9,\n        \"firstname\": \"Test\",\n        \"lastname\": \"Test\"\n    }\n}"
+						},
+						{
+							"name": "Unauthorized Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:11:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"jwt\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testtest\",\n    \"password\": \"testtest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:10:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"firstname\": \"Test\",\n        \"lastname\": \"Test\"\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2OTkzMTIyNTIsImV4cCI6MTY5OTMxNTg1MiwiaWQiOjF9.O7vDmz-0s0zI9CwD2284LBiD7yinJpvFDe1N_Q_5GV3zKGySRjAQ9xVZ0HPK9epTaEu5B-XaN_XuKr1c57YfWg\"\n}"
+						},
+						{
+							"name": "Incorrect Credentials Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"test\",\n    \"password\": \"tesasdft\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Nov 2023 23:11:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Incorrect Credentials.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Links",
+			"item": [
+				{
+					"name": "Create Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uri\": \"http://www.example.com/hello\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/links",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"links"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uri\": \"http://www.example.com/hello\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/links",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"links"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 13:20:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"uri\": \"http://www.example.com/hello\",\n    \"shortLink\": \"1ufFa8\"\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uri\": \"hello\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/links",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"links"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 13:20:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable content.\",\n    \"errors\": {\n        \"uri\": [\n            \"Should be a valid URL.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Links List (of current user)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/links",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"links"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/links",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"links"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 13:21:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"shortLink\": \"CY2457\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 2,\n        \"shortLink\": \"zKxaOt\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 3,\n        \"shortLink\": \"6R05BR\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 4,\n        \"shortLink\": \"txVjaT\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 5,\n        \"shortLink\": \"IozWbQ\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 6,\n        \"shortLink\": \"1ufFa8\",\n        \"uri\": \"http://www.example.com/hello\"\n    },\n    {\n        \"id\": 7,\n        \"shortLink\": \"YOmJHB\",\n        \"uri\": \"httasdfp://www.example.com/hello\"\n    },\n    {\n        \"id\": 8,\n        \"shortLink\": \"7vIgGZ\",\n        \"uri\": \"http://www.example.com/hello\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/links/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"links",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/links/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"links",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 13:22:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/links/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"links",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.2"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Nov 2023 13:23:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 404,\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/:shortLink",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						":shortLink"
+					],
+					"variable": [
+						{
+							"key": "shortLink",
+							"value": "7vIgGZ"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/:shortLink",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":shortLink"
+							],
+							"variable": [
+								{
+									"key": "shortLink",
+									"value": "asdfasdf"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.23.2"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Nov 2023 13:27:27 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.12"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"message\": \"Not Found\"\n}"
+				},
+				{
+					"name": "Successful Redirection to example.com",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/:shortLink",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":shortLink"
+							],
+							"variable": [
+								{
+									"key": "shortLink",
+									"value": "7vIgGZ"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Age",
+							"value": "585879"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=604800"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Nov 2023 13:30:07 GMT"
+						},
+						{
+							"key": "Expires",
+							"value": "Tue, 14 Nov 2023 13:30:07 GMT"
+						},
+						{
+							"key": "Last-Modified",
+							"value": "Tue, 31 Oct 2023 18:45:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "ECS (dcb/7EC8)"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Cache",
+							"value": "404-HIT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "648"
+						}
+					],
+					"cookie": [],
+					"body": "<!doctype html><html><head><title>Example Domain</title><meta charset=\"utf-8\" /><meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /><style type=\"text/css\">\n    body {\n        background-color: #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: -apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n    div {\n        width: 600px;\n        margin: 5em auto;\n        padding: 2em;\n        background-color: #fdfdff;\n        border-radius: 0.5em;\n        box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);\n    }\n    a:link, a:visited {\n        color: #38488f;\n        text-decoration: none;\n    }\n    @media (max-width: 700px) {\n        div {\n            margin: 0 auto;\n            width: auto;\n        }\n    }\n    </style></head><body><div><h1>Example Domain</h1><p>This domain is for use in illustrative examples in documents. You may use this\n    domain in literature without prior coordination or asking for permission.</p><p><a href=\"https://www.iana.org/domains/example\">More information...</a></p></div></body></html>\n"
+				}
+			]
+		}
+	]
+}

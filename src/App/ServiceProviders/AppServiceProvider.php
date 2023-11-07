@@ -2,6 +2,8 @@
 
 namespace App\ServiceProviders;
 
+use App\Repositories\LinkRepository;
+use App\Repositories\LinkRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
 use App\Services\AuthService;
@@ -22,6 +24,11 @@ class AppServiceProvider implements ServiceProvider
         $serviceContainer->set(
             UserRepositoryInterface::class,
             fn() => $serviceContainer->make(UserRepository::class, [])
+        );
+
+        $serviceContainer->set(
+            LinkRepositoryInterface::class,
+            fn() => $serviceContainer->make(LinkRepository::class, [])
         );
     }
 

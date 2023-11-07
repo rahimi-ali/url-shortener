@@ -1,0 +1,6 @@
+{
+  "required": "This field is required.",
+  "minLength": "Should be at least :minLength characters long.",
+  "maxLength": "Should be at most :maxLength characters long.",
+  "url": "Should be a valid URL."
+}
