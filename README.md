@@ -22,6 +22,7 @@ A URL shortener built as an exercise in extreme wheel reinvention!
 - [ ] Add tests for router and feature tests for auth and link APIs.
 - [ ] Add more translation languages and add a detect language middleware to provide correct translations to the user.
 - [ ] Add a rate limiter middleware to prevent abuse.
+- [ ] Cache configuration values in some in memory cache so it doesn't have to be read from file every request.
 
 ## Specs
 
